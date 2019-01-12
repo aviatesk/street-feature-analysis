@@ -1,0 +1,17 @@
+__pycache__
+.ipynb_checkpoints
+data/downloaded/2018*
+data/downloaded/2019*
+data/original
+data/processed
+data/splitted
+figs/transfered/binary
+models/fine-tuned
+models/transfered
+notebooks/data_collecting.ipynb
+refs
+report
+results/2018*
+results/2019*
+src/set_tpu.py
+README_draft.md
