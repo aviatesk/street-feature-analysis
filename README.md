@@ -37,7 +37,7 @@
   
   
   
-[VGG16-Street10] classifies "street" of the 10 famous cities in the world, and also can be used for **"street-feature analysis"**.
+[VGG16-Street10] classifies "streets" of the 10 famous cities in the world, and also can be used for **"street-feature analysis"**.
   
 This repository mainly contains 3 big parts below.
   
@@ -59,7 +59,7 @@ This repository mainly contains 3 big parts below.
 ### Background
   
   
-Haven't you ever felt "the **atmosphere** of a city" when seeing its street ? (Recall when you get back to your mother town after a long journey in foreign countries ...)
+Haven't you ever felt "the atmosphere of a city" when seeing its street ? (Recall when you get back to your mother town after a long journey in foreign countries ...)
   
 For example, even though the two images below seems rather similar, but they must invoke really different impressions for those who have ever lived both in Tokyo and Vancouver (at least very different for me).
   
@@ -80,14 +80,14 @@ So, what's the difference ? What makes the left more "Tokyo-like" and the right 
     - How created
         - Collecting street images with its location labelled: [Google Image Search] & [icrawler]
             - e.g.) Collect street images of Tokyo with search-keywords: *"Tokyo street -fashion -food -painting -art -graffiti"*
-            - **with [`GoogleImageCrawler(filter={license=noncommercial,modify})`](https://icrawler.readthedocs.io/en/latest/builtin.html#search-engine-crawlers ) for collecting images only labeled for noncommercial reuse with modifications**
+            - **with [`GoogleImageCrawler(filter={license=noncommercial,modify})`](https://icrawler.readthedocs.io/en/latest/builtin.html#search-engine-crawlers ) in order to only collect images labeled for noncommercial reuse with modifications**
         - Preprocessing: Remove duplicates, cropping margins
-        - Selection: **Author's visual judgement** of removing images that seems incorrectly labelled or not suits to the concepts of "street" in this project
+        - Selection: **Author's visual judgement** of removing images that seem incorrectly labeled or not suit to the concepts of "street" in this project
             - Yes, this process must be a lot problematic. See [Questions](##Questions ) section below
   
     - Details of dataset: Street10
         - Total number of images: 4,151
-        - Data format: .npy file (zipped 748 MB), including 224 x 224 x 3 size images each
+        - Data format: .npy file (zipped 748 MB), including array of 224 x 224 x 3 size images each
         - Class list: Western/Eastern, 10 cities: the number of samples
             - Eastern: 1997 images
                 - Beijing: 434 images
@@ -115,7 +115,7 @@ So, what's the difference ? What makes the left more "Tokyo-like" and the right 
   
     - Details of [VGG16-Street10] : 
         - Fine-tuned CNN of [VGG16-Places365]
-        - Trained layers: The final dense layers + The last convolutional block
+        - Trained layers: The final dense layers & The last convolutional block
         - Params
             - Trained: 7,410,572
             - Non-trained: 7,636,544
@@ -212,7 +212,7 @@ Run `python run.py -h` to see the details about the other options.
 ### Use Street10
   
   
-You can get Street10 at this link: **https://drive.google.com/file/d/1qOIKSr2LA9TbBYf96y1Wr0KrQKBGmHQp/view?usp=sharing** (anyone who knows this link can download it). <br> Unzip Street10.zip and then you would get .npy files each of which keeps each city's street images as an 224 x 224 x 3 array.
+You can get Street10 at this link: **https://drive.google.com/file/d/1qOIKSr2LA9TbBYf96y1Wr0KrQKBGmHQp/view?usp=sharing** (anyone who knows this link can download it). <br> Unzip Street10.zip and then you would get .npy files each of which keeps each city's street images as an n x 224 x 224 x 3 array.
   
 You may find [load_data.py](src/load_data.py ) useful to load and see the data, or to convert the data into .png format and make the directory for using `keras.preprocessing.image.ImageDataGenerator.flow_from_directory`.
   
@@ -220,13 +220,13 @@ You may find [load_data.py](src/load_data.py ) useful to load and see the data, 
 ### Re-run jupyter notebooks on Colaboratory with GPU
   
   
-If you want to re-run jupyter-notebooks in [notebooks](notebooks ) directory, which train and test [VGG16-Street10] and the many alternative models, you should follow the steps below.
+If you want to re-run jupyter-notebooks in [notebooks](notebooks ) directory, that train and test [VGG16-Street10] and the many alternative models, you should follow the steps below.
   
 1. Make [Google Drive](https://www.google.com/drive/ ) available with your Google account
 2. Move this repository directory under your `My Drive` (Upload from browser or via [Backup and Sync from Google](https://www.google.com/drive/download/backup-and-sync/ ))
 3. Change the name of the directory from `street-feature-analysis` (original) to `prj`
-4. Move and rename [Street10.zip](#use-street10 ) to `prj/data/processed/processed_data.zip`
-4. Open `prj/notebooks/notebooks.ipynb` within [Colaboratory] and run code cells with making its GPU available
+4. Move and rename [`Street10`](#use-street10 ) to `prj/data/processed/processed_data.zip`
+4. Open `prj/notebooks/notebooks.ipynb` within [Colaboratory] and run code cells with turning its GPU on
   
   
   
@@ -270,35 +270,33 @@ Here are two big possible questions you may have about this project and my answe
     - In conclusion, I don't recommend you to use Street10 for your project without any double-checking or modification.
   
 2. Is attribution analysis reliable ? Is "street-feature analysis" from [VGG16-Street10] trustworthy ?
-    - Some recent research throws fundamental doubts on the unreliability of saliency methods including [(Guided-)GradCAM]: https://arxiv.org/pdf/1711.00867.pdf
-    - In the first place, [(Guided-)GradCAM] is not enough for "street-feature analysis" mainly because it only shows samplewise-attribution for an input image.
-    - Research for the interpretability of CNNs' deep features is on going, and "street-feature analysis" needs more enhancements as well.
+    - Some recent research throws fundamental doubts on the reliability of saliency methods including [(Guided-)GradCAM]: https://arxiv.org/pdf/1711.00867.pdf. Even worse, [(Guided-)GradCAM] is actually *not* enough for "street-feature analysis" in the first place, mainly because it only shows samplewise-attribution for an input image and can't detect *the universal features* across the whole dataset.
+    - Research for the interpretability of CNNs' deep features is on-going, and likewise "street-feature analysis" needs more enhancements as well.
+    - From all above, I must say "street-feature analysis" is still in prototype and not applicable to practical usage for now.
   
-If you have any more comment or suggestion for this project, you're welcom to open an issue or make a pull request.
+If you have any more comment or suggestion for this project, you're welcom to open an issue or make a pull request !
   
   
   
 ## Future works
   
   
-As mentioned above, [(Guided-)GradCAM] loses much insight, leaving rich behaviour a network's hidden layers untouched.
-  
-While there are many on-going researchs about the interpretability of neural networks' behaviour including Attribution analysis like [(Guided-)GradCAM], it seems that the combined interface of Feature visulalization and Attribution analysis introduced in https://distill.pub/2018/building-blocks/ could be the next step. I may implement that for [VGG16-Street10] as an future enhancement.
+While there are many on-going researchs about the interpretability of neural networks' behaviour including Attribution analysis like [(Guided-)GradCAM], it seems that an interface combining Feature visulalization with Attribution analysis introduced in https://distill.pub/2018/building-blocks/ could be the next step. I may implement the rich interface for [VGG16-Street10] as a future enhancement.
   
   
   
 ## Acknowledgements
   
   
-This project is carried as the final assignment for [DL4US](http://dl4us.com/ ), online deep-learning educating course held by [Matsuo Lab., the University of Tokyo](https://weblab.t.u-tokyo.ac.jp/en/ ). Though almost all what I have done with the project is accessible within this repository, only the final report I submitted is not available because of the restriction. But still you can see the [slides of presentation](presentation-2018-12-14/presentation-2018-12-14.pdf ) that I held at the completion celemony on Dec.14, 2018, at University of Tokyo (in Japanese).
+This project is carried as the final assignment for [DL4US](http://dl4us.com/ ), online deep-learning educating course held by [Matsuo Lab., the University of Tokyo](https://weblab.t.u-tokyo.ac.jp/en/ ). Though almost all what I have done with the project is accessible within this repository, only the final report I submitted is not available because of restriction. But still you can see the [slides of presentation](presentation-2018-12-14/presentation-2018-12-14.pdf ) that I held at the completion celemony on Dec.14, 2018, at University of Tokyo (in Japanese).
   
-The initial inspiration for this project is from my friend [Ryohei](https://www.instagram.com/ryohei_ideal/ )'s instagram post: https://www.instagram.com/p/Bl7Sd2dnwNt8ZVzTu1Rdbe0NPUayQY48K77u-k0/ <br> Check his cool posts with great implications !
+The initial inspiration for this project was from my friend [Ryohei](https://www.instagram.com/ryohei_ideal/ )'s instagram post: https://www.instagram.com/p/Bl7Sd2dnwNt8ZVzTu1Rdbe0NPUayQY48K77u-k0/ <br> Check his cool posts with great implications !
   
   
 ### References
   
   
-While developing this project, I referred to many online resources. I show the list of the main references below. Thanks for all the great authors !
+While developing this project, I referred to many online resources. I show the main references list below. Thanks for all the great authors !
   
 - Places Dataset by B. Zhou, A. Lapedriza, A. Khosla, A. Oliva, and A. Torralba: http://places2.csail.mit.edu/
 - VGG16-Places365: https://github.com/CSAILVision/places365
@@ -318,7 +316,7 @@ While developing this project, I referred to many online resources. I show the l
 ## Appendix
   
   
-Here are batchwisely-computed classification and attribution results for examples in each city (original input images on the upper rows and results on the lower).
+Here are batchwisely-computed classification and attribution results for examples in each city (original input images on the upper rows and results on the lower - classification results shown in the title position).
   
 - Eastern cities
   
