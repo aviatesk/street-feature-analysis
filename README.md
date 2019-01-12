@@ -44,10 +44,10 @@ This repository mainly contains 3 big parts below.
 1. **Dataset**:
     - Scripts collecting and preprocessing "streets" images of the 10 cities in the world
     - [The link](#use-street10 ) to the dataset itself called Street10, created specially for this project
-2. **Street-classifier**:
+2. **Street classifier**:
     - Jupyter-notebooks (and scripts used in them) for training and testing various CNNs
     - [VGG16-Street10], CNN that achieved the best classification results
-3. **Street-analyzer**:
+3. **Street analyzer**:
     - [Comamnd-line program](run.py ) that takes street images as input and classifies them and visualizing their characteristic "features"
   
   
@@ -128,7 +128,7 @@ So, what's the difference ? What makes the left more "Tokyo-like" and the right 
 <br>
   
   
-3. **Street analyzer**
+3. **Street-feature analyzer**
   
     - Method: [(Guided-)GradCAM] (Attribution analysis)
   
@@ -185,7 +185,7 @@ I think this kind of analysis can be useful in city development or landscape con
 3. Run [run.py] and check if the demo works successfully: `python run.py`
   
   
-### Street-classifying and Street-feature analysis
+### Street classifying and Street-feature analysis
   
   
 Now you can classify and analyze any .jpg or .png format street image you want. For example, you can re-produce [the results above](#overview-of-results ) with this command.
@@ -220,7 +220,7 @@ You may find [load_data.py](src/load_data.py ) useful to load and see the data, 
 ### Re-run jupyter notebooks on Colaboratory with GPU
   
   
-If you want to re-run jupyter-notebooks in [notebooks](notebooks ) directory, which train and test [VGG16-Street10] and the many alternative models, the steps are below.
+If you want to re-run jupyter-notebooks in [notebooks](notebooks ) directory, which train and test [VGG16-Street10] and the many alternative models, you should follow the steps below.
   
 1. Make [Google Drive](https://www.google.com/drive/ ) available with your Google account
 2. Move this repository directory under your `My Drive` (Upload from browser or via [Backup and Sync from Google](https://www.google.com/drive/download/backup-and-sync/ ))
@@ -263,7 +263,7 @@ For those interested in details, here are brief descriptions for directories and
 ## Questions
   
   
-Here are two possible questions you may have about this project and my answers for them.
+Here are two big possible questions you may have about this project and my answers for them.
   
 1. To what extent can I trust the dataset Street10 ?
     - Unfortunately, the quality of Street10 may not be too high, mainly in terms of its accuracy or consistency. There are two main reasons for this. One is that I could not completely confirm a street is *really* in the city while my own visual judgement. Second is because the concept of "street" in this project is actually ambiguous, e.g. we can't easily tell the difference between "street" and "building", or "road".
@@ -294,12 +294,11 @@ This project is carried as the final assignment for [DL4US](http://dl4us.com/ ),
   
 The initial inspiration for this project is from my friend [Ryohei](https://www.instagram.com/ryohei_ideal/ )'s instagram post: https://www.instagram.com/p/Bl7Sd2dnwNt8ZVzTu1Rdbe0NPUayQY48K77u-k0/ <br> Check his cool posts with great implications !
   
-While developing this project, I referred to many online resources. I show the list of the main references below. Thanks for all the great authors !
-  
   
 ### References
   
   
+While developing this project, I referred to many online resources. I show the list of the main references below. Thanks for all the great authors !
   
 - Places Dataset by B. Zhou, A. Lapedriza, A. Khosla, A. Oliva, and A. Torralba: http://places2.csail.mit.edu/
 - VGG16-Places365: https://github.com/CSAILVision/places365
