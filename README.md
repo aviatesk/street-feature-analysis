@@ -17,7 +17,7 @@
 	* [Overview of results](#overview-of-results )
 * [How to use](#how-to-use )
 	* [Set-up](#set-up )
-	* [Street-classifying and Street-feature analysis](#street-classifying-and-street-feature-analysis )
+	* [Street classifying and Street-feature analysis](#street-classifying-and-street-feature-analysis )
 	* [Use Street10](#use-street10 )
 	* [Re-run jupyter notebooks on Colaboratory with GPU](#re-run-jupyter-notebooks-on-colaboratory-with-gpu )
 * [Directories & files](#directories-files )
@@ -47,7 +47,7 @@ This repository mainly contains 3 big parts below.
 2. **Street classifier**:
     - Jupyter-notebooks (and scripts used in them) for training and testing various CNNs
     - [VGG16-Street10], CNN that achieved the best classification results
-3. **Street analyzer**:
+3. **Street-feature analyzer**:
     - [Comamnd-line program](run.py ) that takes street images as input and classifies them and visualizing their characteristic "features"
   
   
