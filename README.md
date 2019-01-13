@@ -217,7 +217,7 @@ If you want to re-run jupyter-notebooks in [notebooks](notebooks ) directory, th
 1. Make [Google Drive](https://www.google.com/drive/ ) available with your Google account
 2. Move this repository directory under your `My Drive` (Upload from browser or via [Backup and Sync from Google](https://www.google.com/drive/download/backup-and-sync/ ))
 3. Change the name of the directory from `street-feature-analysis` (original) to `prj`
-4. Move and rename [`Street10`](#use-street10 ) to `prj/data/processed/processed_data.zip`
+4. Move and rename [`Street10.zip`](#use-street10 ) to `prj/data/processed/processed_data.zip`
 4. Open `prj/notebooks/notebooks.ipynb` within [Colaboratory] and run code cells with turning its GPU on
   
   
@@ -282,7 +282,7 @@ While there are many on-going researchs about the interpretability of neural net
   
 This project is carried as the final assignment for [DL4US](http://dl4us.com/ ), online deep-learning educating course held by [Matsuo Lab., the University of Tokyo](https://weblab.t.u-tokyo.ac.jp/en/ ). Though almost all what I have done with the project is accessible within this repository, only the final report I submitted is not available because of restriction. But still you can see the [slides of presentation](presentation-2018-12-14/presentation-2018-12-14.pdf ) that I held at the completion celemony on Dec.14, 2018, at University of Tokyo (in Japanese).
   
-The initial inspiration for this project was from my friend [Ryohei](https://www.instagram.com/ryohei_ideal/ )'s instagram post: https://www.instagram.com/p/Bl7Sd2dnwNt8ZVzTu1Rdbe0NPUayQY48K77u-k0/ <br> Check his cool posts with great implications !
+The initial inspiration for this project was from my friend [Ryohei](https://www.instagram.com/ryohei_ideal/ )'s instagram post: https://www.instagram.com/p/Bl7Sd2dnwNt8ZVzTu1Rdbe0NPUayQY48K77u-k0/ <br> Check his cool posts with a lot of implications !
   
   
 ### References
