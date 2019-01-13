@@ -102,10 +102,6 @@ So, what's the difference ? What makes the left more "Tokyo-like" and the right 
                 - Paris: 436 images
                 - Vancouver: 354 images
   
-  
-<br>
-  
-  
 2. **Street Classifier**
   
     - How to train
@@ -123,10 +119,6 @@ So, what's the difference ? What makes the left more "Tokyo-like" and the right 
             - Output1: "Eastern or Western classification" (binary class)
             - Output2: "City classification" (10 classes)
         - File type: .h5 file (Keras-format)        
-  
-  
-<br>
-  
   
 3. **Street-feature analyzer**
   
