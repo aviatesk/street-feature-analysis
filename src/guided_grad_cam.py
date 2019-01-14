@@ -184,10 +184,10 @@ def show_saliency(
         verbose=1,
 ):
     '''
-    make prediction for an input image and then
-    computes its saliency for the input image using the three approaches, Guided-Backprobagation, Grad-CAM, Guided-Grad-CAM
+    Makes prediction for an input image and then
+    computes its saliency for the input image using Attribution-analytical approaches: Guided-GradCAM
 
-    argments:
+    ## argments:
     - layer_name: layer whose gradient will used when Grad-CAM and Guided-Backprobagation computed
     - top_n: number of predictions with high probability to be shown
     - localized_cls1: class number to localize for output1 (0 for most probable class, and 1 for the second most probable class, and so on)
