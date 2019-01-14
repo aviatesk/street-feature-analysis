@@ -235,7 +235,7 @@ For those interested in details, here are brief descriptions for directories and
 - [models](models ):
     - [512-avg-0.5vs1-15.best.default.h5](512-avg-0.5vs1-15.best.default.h5 ): Keras-format model .h5 file a.k.a. [VGG16-Street10]
 - [notebooks](notebooks ): Jupyter-notebooks for training and testing various models on [Colaboratory] with GPUs.
-- [presentation-2018-12-14](presentation-2018-12-14 ): Documents of the presentations I held on Dec.14, 2018, at University of Tokyo
+- [presentation-2018-12-14](presentation-2018-12-14/README.md ): Documents of the presentations I held on Dec.14, 2018, at University of Tokyo
 - [results](results ): Results from [run.py]
     - Also containing batchwisely-computed results (see [Appendix](#appendix ) section)
 - [src](src ): Scripts for collecting/processing data and supporting running [notebooks](notebooks )
@@ -280,7 +280,7 @@ While there are many on-going researchs about the interpretability of neural net
 ## Acknowledgements
   
   
-This project is carried as the final assignment for [DL4US](http://dl4us.com/ ), online deep-learning educating course held by [Matsuo Lab., the University of Tokyo](https://weblab.t.u-tokyo.ac.jp/en/ ). Though almost all what I have done with the project is accessible within this repository, only the final report I submitted is not available because of restriction. But still you can see the [slides of presentation](presentation-2018-12-14/presentation-2018-12-14.pdf ) that I held at the completion celemony on Dec.14, 2018, at University of Tokyo (in Japanese).
+This project is carried as the final assignment for [DL4US](http://dl4us.com/ ), online deep-learning educating course held by [Matsuo Lab., the University of Tokyo](https://weblab.t.u-tokyo.ac.jp/en/ ). Though almost all what I have done with the project is accessible within this repository, only the final report I submitted is not available because of restriction. But still you can see the [slides of presentation](presentation-2018-12-14/README.md ) that I held at the completion celemony on Dec.14, 2018, at University of Tokyo (in Japanese).
   
 The initial inspiration for this project was from my friend [Ryohei](https://www.instagram.com/ryohei_ideal/ )'s instagram post: https://www.instagram.com/p/Bl7Sd2dnwNt8ZVzTu1Rdbe0NPUayQY48K77u-k0/ <br> Check his cool posts with a lot of implications !
   
