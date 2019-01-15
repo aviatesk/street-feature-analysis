@@ -215,10 +215,10 @@ You may find [load_data.py](src/load_data.py ) useful to load and see the data, 
 If you want to re-run jupyter-notebooks in [notebooks](notebooks ) directory, that train and test [VGG16-Street10] and the many alternative models, you should follow the steps below.
   
 1. Make [Google Drive](https://www.google.com/drive/ ) available with your Google account
-2. Move this repository directory under your `My Drive` (Upload from browser or via [Backup and Sync from Google](https://www.google.com/drive/download/backup-and-sync/ ))
-3. Change the name of the directory from `street-feature-analysis` (original) to `prj`
-4. Move and rename [`Street10.zip`](#use-street10 ) to `prj/data/processed/processed_data.zip`
-4. Open `prj/notebooks/notebooks.ipynb` within [Colaboratory] and run code cells with turning its GPU on
+2. Move this repository directory under your `"My Drive"` (Upload from browser or via [Backup and Sync from Google](https://www.google.com/drive/download/backup-and-sync/ ))
+3. Change the name of the directory from `"My Drive"/street-feature-analysis` (original) to `"My Drive"/prj`
+4. Move and rename [`Street10.zip`](#use-street10 ) to `"My Drive"/prj/data/processed/processed_data.zip`
+4. Open `"My Drive"/prj/notebooks/notebooks.ipynb` within [Colaboratory] and run code cells with turning its GPU on
   
   
   
