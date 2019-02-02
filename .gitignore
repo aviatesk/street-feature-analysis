@@ -1,4 +1,5 @@
 __pycache__
+.atom/
 .ipynb_checkpoints
 data/downloaded/2018*
 data/downloaded/2019*
@@ -12,7 +13,7 @@ notebooks/data_collecting.ipynb
 presentation-2018-12-14/presentation-2018-12-14.gslides
 refs
 report
-results/2018*
-results/2019*
+results/*
+!results/demo.png
 src/set_tpu.py
 README_draft.md

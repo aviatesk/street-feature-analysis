@@ -67,7 +67,7 @@ For example, even though the two images below seems rather similar, but they mus
 |-----------------------------------------------------------------|-------------------------------------------------------------------------|
 | <img src='assets/tokyo.jpg' width='600px' title='tokyo street'> | <img src='assets/vancouver.jpg' width='600px' title='vancouver street'> |
   
-(Images are downloaded via [Google Image Search] with usage right labeled for `noncommercial reuse with modification`)
+(Images are downloaded via [Google Image Search] with usage right labelled for `noncommercial reuse with modification`)
   
 So, what's the difference ? What makes the left more "Tokyo-like" and the right "Vancouver-ish" ? These're why I decided to launch this project.
   
@@ -80,9 +80,9 @@ So, what's the difference ? What makes the left more "Tokyo-like" and the right 
     - How created
         - Collecting street images with its location labelled: [Google Image Search] & [icrawler]
             - e.g.) Collect street images of Tokyo with search-keywords: *"Tokyo street -fashion -food -painting -art -graffiti"*
-            - **with [`GoogleImageCrawler(filter={license=noncommercial,modify})`](https://icrawler.readthedocs.io/en/latest/builtin.html#search-engine-crawlers ) in order to only collect images labeled for noncommercial reuse with modifications**
+            - **with [`GoogleImageCrawler(filter={license=noncommercial,modify})`](https://icrawler.readthedocs.io/en/latest/builtin.html#search-engine-crawlers ) in order to only collect images labelled for *noncommercial reuse with modifications***
         - Preprocessing: Remove duplicates, cropping margins
-        - Selection: **Author's visual judgement** of removing images that seem incorrectly labeled or not suit to the concepts of "street" in this project
+        - Selection: **Author's visual judgement** of removing images that seem incorrectly labelled or not suit to the concepts of "street" in this project
             - Yes, this process must be a lot problematic. See [Questions](##Questions ) section below
   
     - Details of dataset: Street10
@@ -112,7 +112,7 @@ So, what's the difference ? What makes the left more "Tokyo-like" and the right 
     - Details of [VGG16-Street10] : 
         - Fine-tuned CNN of [VGG16-Places365]
         - Trained layers: The final dense layers & The last convolutional block
-        - Params
+        - The number of parameters
             - Trained: 7,410,572
             - Non-trained: 7,636,544
         - Outputs
@@ -133,16 +133,16 @@ So, what's the difference ? What makes the left more "Tokyo-like" and the right 
   
 - Classification metrics (accuracy and normalized confusion matrix) against whole 421 test samples
   
-| Output 1: Eastern/Western classification                                                    | Output 2: 10 cities classification                                                            |
+| Output 1: Eastern/Western classification                                                    | Output 2: 10 cities classification                                                          |
 |---------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
 | <img src='assets/category1-512-avg-0.5vs1-15.best.png' width='' height='' title='Output 1'> | <img src='assets/category2-512-avg-0.5vs1-15.best.png' width='' height='' title='Output 2'> |
   
 - Results against the example images shown above
   
-|                         | Tokyo                                                                                                                                                                                                           | Vancouver                                                                                                                                                                                                      |
-|:-----------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|                         | Tokyo                                                                                                                                                                                                           | Vancouver                                                                                                                                                                                                      |   |
+|:-----------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---|
 |     Classification      | `[Process 1]: Prediction 1 `<br>` - Eastern: 78.714 %`<br>` - Western: 21.286 %`<br>`[Process 1]: Prediction 2 for top 3 cities`<br>*` - Tokyo  : 80.814 %`*<br>` - Kyoto  : 12.945 %`<br>` - London : 3.568 %` | `[Process 2]: Prediction 1`<br>` - Western: 99.856 %`<br>` - Eastern: 0.144 %`<br>`[Process 2]: Prediction 2 for top 3 cities`<br>*` - Vancouver: 94.909 %`*<br>` - NYC    : 4.815 %`<br>` - London : 0.166 %` |   |
-| Street-feature analysis | <img src='assets/tokyo_result.png' width='' height='' title='tokyo_result'>                                                                                                                                     | <img src='assets/vancouver_result.png' width='' height='' title='vancouver_result'>                                                                                                                            |
+| Street-feature analysis | <img src='assets/tokyo_result.png' width='' height='' title='tokyo_result'>                                                                                                                                     | <img src='assets/vancouver_result.png' width='' height='' title='vancouver_result'>                                                                                                                            |   |
   
 As for the two images above, [VGG16-Street10] could make good predictions ! <br> And from the Guided-GradCAM results, we could do "street-feature analysis" like ...
   
@@ -240,13 +240,13 @@ For those interested in details, here are brief descriptions for directories and
     - Also containing batchwisely-computed results (see [Appendix](#appendix ) section)
 - [src](src ): Scripts for collecting/processing data and supporting running [notebooks](notebooks )
     - [places365_vgg16_keras](src/places365_vgg16_keras ): Loads [VGG16-Places365] (originally cloned from https://github.com/GKalliatakis/Keras-VGG16-places365)
-    - [callbacks.py](src/callbacks.py ): Defines `keras.callbacks.Callback` objects to be called while traning networks
+    - [callbacks.py](src/callbacks.py ): Defines `keras.callbacks.Callback` objects to be called while training networks
     - [crawl.py](src/crawl.py ): Crawls images via [Google Image Search] with [icrawler]
     - [extract.py](src/extract.py ): Extracts deep-features for SVM-based baselines
     - [guided_grad_cam.py](src/guided_grad_cam.py ): Computes [(Guided-)GradCAM] for [run.py]
     - [load_data.py](src/load_data.py ): Loads and set training/validation/test data
-    - [load_model.py](src/load_model.py ): Loads and set transfered/fine-tuned networks of [VGG16-Places365] or VGG16-ImageNet
-    - [preprocess.py](src/preprocess.py ): Preprocesses the crawlled data by [crawl.py](src/crawl.py )
+    - [load_model.py](src/load_model.py ): Loads and set transferred/fine-tuned networks of [VGG16-Places365] or VGG16-ImageNet
+    - [preprocess.py](src/preprocess.py ): Preprocesses the crawled data by [crawl.py](src/crawl.py )
     - [set_generator.py](src/set_generator.py ): Defines `keras.preprocessing.image.ImageDataGenerator` class objects for using `flow_from_directory` method with multiple outputs
     - [utils.py](src/utils.py ): Defines utility functions
   
@@ -266,23 +266,23 @@ Here are two big possible questions you may have about this project and my answe
     - Research for the interpretability of CNNs' deep features is on-going, and likewise "street-feature analysis" needs more enhancements as well.
     - From all above, I must say "street-feature analysis" is still in prototype and not applicable to practical usage for now.
   
-If you have any more comment or suggestion for this project, you're welcom to open an issue or make a pull request !
+If you have any more comment or suggestion for this project, you're welcome to open an issue or make a pull request !
   
   
   
 ## Future works
   
   
-While there are many on-going researchs about the interpretability of neural networks' behaviour including Attribution analysis like [(Guided-)GradCAM], it seems that an interface combining Feature visulalization with Attribution analysis introduced in https://distill.pub/2018/building-blocks/ could be the next step. I may implement the rich interface for [VGG16-Street10] as a future enhancement.
+While there are many on-going researches about the interpretability of neural networks' behaviour including Attribution analysis like [(Guided-)GradCAM], it seems that an interface combining Feature visualization with Attribution analysis introduced in https://distill.pub/2018/building-blocks/ could be the next step. I may implement the rich interface for [VGG16-Street10] as a future enhancement.
   
   
   
 ## Acknowledgements
   
   
-This project is carried as the final assignment for [DL4US](http://dl4us.com/ ), online deep-learning educating course held by [Matsuo Lab., the University of Tokyo](https://weblab.t.u-tokyo.ac.jp/en/ ). Though almost all what I have done with the project is accessible within this repository, only the final report I submitted is not available because of restriction. But still you can see the [slides of presentation](presentation-2018-12-14/README.md ) that I held at the completion celemony on Dec.14, 2018, at University of Tokyo (in Japanese).
+This project is carried as the final assignment for [DL4US](http://dl4us.com/ ), online deep-learning educating course held by [Matsuo Lab., the University of Tokyo](https://weblab.t.u-tokyo.ac.jp/en/ ). Though almost all what I have done with the project is accessible within this repository, only the final report I submitted is not available because of restriction. But still you can see the [slides of presentation](presentation-2018-12-14/README.md ) that I held at the completion ceremony on Dec.14, 2018, at University of Tokyo (in Japanese).
   
-The initial inspiration for this project was from my friend [Ryohei](https://www.instagram.com/ryohei_ideal/ )'s instagram post: https://www.instagram.com/p/Bl7Sd2dnwNt8ZVzTu1Rdbe0NPUayQY48K77u-k0/ <br> Check his cool posts with a lot of implications !
+The initial inspiration for this project was from my friend [Ryohei](https://www.instagram.com/ryohei_ideal/ )'s Instagram post: https://www.instagram.com/p/Bl7Sd2dnwNt8ZVzTu1Rdbe0NPUayQY48K77u-k0/ <br> Check his cool posts with a lot of implications !
   
   
 ### References
@@ -312,11 +312,11 @@ Here are batchwisely-computed classification and attribution results for example
   
 - Eastern cities
   
-<img src='results/eastern.png' width='' height='' title=''>
+<img src='./assets/eastern.png' width='' height='' title=''>
   
 - Western cities
   
-<img src='results/western.png' width='' height='' title=''>
+<img src='./assets/western.png' width='' height='' title=''>
   
   
   
