@@ -1,7 +1,10 @@
   
   
   
+  
 # VGG16-Street10 - Street-Feature Analysis with Keras
+  
+  
   
   
 ## TOC
@@ -19,8 +22,7 @@
 	* [Set-up](#set-up )
 	* [Street classifying and Street-feature analysis](#street-classifying-and-street-feature-analysis )
 	* [Use Street10](#use-street10 )
-	* [Re-run jupyter notebooks on Colaboratory with GPU](#re-run-jupyter-notebooks-on-colaboratory-with-gpu )
-* [Directories & files](#directories-files )
+	* [Re-run Jupyter notebooks on Colaboratory with GPU](#re-run-jupyter-notebooks-on-colaboratory-with-gpu )
 * [Questions](#questions )
 * [Future works](#future-works )
 * [Acknowledgements](#acknowledgements )
@@ -36,19 +38,18 @@
 ## About
   
   
-  
 [VGG16-Street10] classifies "streets" of the 10 famous cities in the world, and also can be used for **"street-feature analysis"**.
   
 This repository mainly contains 3 big parts below.
   
 1. **Dataset**:
     - Scripts collecting and preprocessing "streets" images of the 10 cities in the world
-    - [The link](#use-street10 ) to the dataset itself called Street10, created specially for this project
+    - [Street10, the dataset itself](#use-street10 )
 2. **Street classifier**:
     - Jupyter-notebooks (and scripts used in them) for training and testing various CNNs
     - [VGG16-Street10], CNN that achieved the best classification results
 3. **Street-feature analyzer**:
-    - [Comamnd-line program](run.py ) that takes street images as input and classifies them and visualizing their characteristic "features"
+    - [Command-line program](run.py ) that takes street images as input and classifies them and visualizing their characteristic "features"
   
   
   
@@ -80,7 +81,7 @@ So, what's the difference ? What makes the left more "Tokyo-like" and the right 
     - How created
         - Collecting street images with its location labelled: [Google Image Search] & [icrawler]
             - e.g.) Collect street images of Tokyo with search-keywords: *"Tokyo street -fashion -food -painting -art -graffiti"*
-            - **with [`GoogleImageCrawler(filter={license=noncommercial,modify})`](https://icrawler.readthedocs.io/en/latest/builtin.html#search-engine-crawlers ) in order to only collect images labelled for *noncommercial reuse with modifications***
+            - with [`GoogleImageCrawler(filter={license=noncommercial,modify})`](https://icrawler.readthedocs.io/en/latest/builtin.html#search-engine-crawlers ) in order to only collect images labelled for *noncommercial reuse with modifications*
         - Preprocessing: Remove duplicates, cropping margins
         - Selection: **Author's visual judgement** of removing images that seem incorrectly labelled or not suit to the concepts of "street" in this project
             - Yes, this process must be a lot problematic. See [Questions](##Questions ) section below
@@ -106,11 +107,11 @@ So, what's the difference ? What makes the left more "Tokyo-like" and the right 
   
     - How to train
         - Transfer-learning & Fine-tuning of [VGG16-Places365] (VGG16-architecture CNN trained on [Places-Dataset])
-            - Compared: Baselines(SVM on extracted deep-features of the last layer of [VGG16-Places365]), [ImageNet] pre-trained CNN, Randomly-initialized network
+            - Compared: Baselines(SVM on extracted deep-features of the last layer of VGG16-Places365), [ImageNet] pre-trained CNN, Randomly-initialized network
         - Computation resources: GPUs offered within [Google Colaboratory][colaboratory]
   
     - Details of [VGG16-Street10] : 
-        - Fine-tuned CNN of [VGG16-Places365]
+        - Fine-tuned CNN of VGG16-Places365
         - Trained layers: The final dense layers & The last convolutional block
         - The number of parameters
             - Trained: 7,410,572
@@ -122,10 +123,12 @@ So, what's the difference ? What makes the left more "Tokyo-like" and the right 
   
 3. **Street-feature analyzer**
   
-    - Method: [(Guided-)GradCAM] (Attribution analysis)
+    - Method: [(Guided) Grad-CAM] (Attribution analysis)
   
     - We can interpret the objects and structures in the highly-attributed (salient) area of an input image by the method as *distinctive elements of the street*, which are important for the CNN to make the prediction
   
+  
+[(Guided) Grad-CAM]: https://arxiv.org/abs/1610.02391
   
   
 ### Overview of results
@@ -144,7 +147,7 @@ So, what's the difference ? What makes the left more "Tokyo-like" and the right 
 |     Classification      | `[Process 1]: Prediction 1 `<br>` - Eastern: 78.714 %`<br>` - Western: 21.286 %`<br>`[Process 1]: Prediction 2 for top 3 cities`<br>*` - Tokyo  : 80.814 %`*<br>` - Kyoto  : 12.945 %`<br>` - London : 3.568 %` | `[Process 2]: Prediction 1`<br>` - Western: 99.856 %`<br>` - Eastern: 0.144 %`<br>`[Process 2]: Prediction 2 for top 3 cities`<br>*` - Vancouver: 94.909 %`*<br>` - NYC    : 4.815 %`<br>` - London : 0.166 %` |   |
 | Street-feature analysis | <img src='assets/tokyo_result.png' width='' height='' title='tokyo_result'>                                                                                                                                     | <img src='assets/vancouver_result.png' width='' height='' title='vancouver_result'>                                                                                                                            |   |
   
-As for the two images above, [VGG16-Street10] could make good predictions ! <br> And from the Guided-GradCAM results, we could do "street-feature analysis" like ...
+As for the two images above, VGG16-Street10 could make good predictions ! <br> And from the Guided Grad-CAM results, we could do "street-feature analysis" like ...
   
 - Tokyo street has
     - crowded objects
@@ -160,6 +163,7 @@ I think this kind of analysis can be useful in city development or landscape con
   
   
 ## How to use
+  
   
   
 ### Set-up
@@ -192,7 +196,7 @@ python run.py assets/tokyo.jpg assets/vancouver.jpg
 python run.py https://wiki.samurai-archives.com/images/b/b9/Shinmachi-nishikikoji.jpg
 ```
   
-If you want to only see GradCAM results, your can use `--only-cam` option.
+If you want to only see Grad-CAM results, your can use `--only-cam` option.
   
 ```sh
 python run.py --only-cam assets/tokyo.jpg assets/vancouver.jpg
@@ -209,46 +213,19 @@ You can get Street10 at this link: **https://drive.google.com/file/d/1qOIKSr2LA9
 You may find [load_data.py](src/load_data.py ) useful to load and see the data, or to convert the data into .png format and make the directory for using `keras.preprocessing.image.ImageDataGenerator.flow_from_directory`.
   
   
-### Re-run jupyter notebooks on Colaboratory with GPU
+### Re-run Jupyter notebooks on Colaboratory with GPU
   
   
-If you want to re-run jupyter-notebooks in [notebooks](notebooks ) directory, that train and test [VGG16-Street10] and the many alternative models, you should follow the steps below.
+If you want to re-run Jupyter-notebooks in [notebooks](notebooks ) directory, that train and test VGG16-Street10 and the other many alternative models, you should follow the steps below.
   
 1. Make [Google Drive](https://www.google.com/drive/ ) available with your Google account
 2. Move this repository directory under your `"My Drive"` (Upload from browser or via [Backup and Sync from Google](https://www.google.com/drive/download/backup-and-sync/ ))
 3. Change the name of the directory from `"My Drive"/street-feature-analysis` (original) to `"My Drive"/prj`
 4. Move and rename [`Street10.zip`](#use-street10 ) to `"My Drive"/prj/data/processed/processed_data.zip`
-4. Open `"My Drive"/prj/notebooks/notebooks.ipynb` within [Colaboratory] and run code cells with turning its GPU on
+4. Open `"My Drive"/prj/notebooks/notebooks.ipynb` within Colaboratory and run code cells with turning its GPU on
   
   
   
-## Directories & files
-  
-  
-For those interested in details, here are brief descriptions for directories and files in this repository.
-  
-- [assets](assets ): Files used for this document
-- [data](data ): 
-    - [downloaded](data/demo_downloaded ): Images downloaded by [run.py]
-- [figs](figs ): Figures showing results of various models I tried
-- [hists](hists ): .csv files showing the learning transitions of various CNNs I tried
-- [models](models ):
-    - [512-avg-0.5vs1-15.best.default.h5](512-avg-0.5vs1-15.best.default.h5 ): Keras-format model .h5 file a.k.a. [VGG16-Street10]
-- [notebooks](notebooks ): Jupyter-notebooks for training and testing various models on [Colaboratory] with GPUs.
-- [presentation-2018-12-14](presentation-2018-12-14/README.md ): Documents of the presentations I held on Dec.14, 2018, at University of Tokyo
-- [results](results ): Results from [run.py]
-    - Also containing batchwisely-computed results (see [Appendix](#appendix ) section)
-- [src](src ): Scripts for collecting/processing data and supporting running [notebooks](notebooks )
-    - [places365_vgg16_keras](src/places365_vgg16_keras ): Loads [VGG16-Places365] (originally cloned from https://github.com/GKalliatakis/Keras-VGG16-places365)
-    - [callbacks.py](src/callbacks.py ): Defines `keras.callbacks.Callback` objects to be called while training networks
-    - [crawl.py](src/crawl.py ): Crawls images via [Google Image Search] with [icrawler]
-    - [extract.py](src/extract.py ): Extracts deep-features for SVM-based baselines
-    - [guided_grad_cam.py](src/guided_grad_cam.py ): Computes [(Guided-)GradCAM] for [run.py]
-    - [load_data.py](src/load_data.py ): Loads and set training/validation/test data
-    - [load_model.py](src/load_model.py ): Loads and set transferred/fine-tuned networks of [VGG16-Places365] or VGG16-ImageNet
-    - [preprocess.py](src/preprocess.py ): Preprocesses the crawled data by [crawl.py](src/crawl.py )
-    - [set_generator.py](src/set_generator.py ): Defines `keras.preprocessing.image.ImageDataGenerator` class objects for using `flow_from_directory` method with multiple outputs
-    - [utils.py](src/utils.py ): Defines utility functions
   
   
   
@@ -261,8 +238,8 @@ Here are two big possible questions you may have about this project and my answe
     - Unfortunately, the quality of Street10 may not be too high, mainly in terms of its accuracy or consistency. There are two main reasons for this. One is that I could not completely confirm a street is *really* in the city while my own visual judgement. Second is because the concept of "street" in this project is actually ambiguous, e.g. we can't easily tell the difference between "street" and "building", or "road".
     - In conclusion, I don't recommend you to use Street10 for your project without any double-checking or modification.
   
-2. Is attribution analysis reliable ? Is "street-feature analysis" from [VGG16-Street10] trustworthy ?
-    - Some recent research throws fundamental doubts on the reliability of saliency methods including [(Guided-)GradCAM]: https://arxiv.org/pdf/1711.00867.pdf. Even worse, [(Guided-)GradCAM] is actually *not* enough for "street-feature analysis" in the first place, mainly because it only shows samplewise-attribution for an input image and can't detect *the universal features* across the whole dataset.
+2. Is attribution analysis reliable ? Is "street-feature analysis" from VGG16-Street10 trustworthy ?
+    - Some recent research throws fundamental doubts on the reliability of saliency methods including (Guided) Grad-CAM: https://arxiv.org/pdf/1711.00867.pdf. Even worse, (Guided) Grad-CAM is actually *not* enough for "street-feature analysis" in the first place, mainly because it only shows *samplewise-attribution* for an input image and can't detect *the universal features* across the whole dataset.
     - Research for the interpretability of CNNs' deep features is on-going, and likewise "street-feature analysis" needs more enhancements as well.
     - From all above, I must say "street-feature analysis" is still in prototype and not applicable to practical usage for now.
   
@@ -273,7 +250,7 @@ If you have any more comment or suggestion for this project, you're welcome to o
 ## Future works
   
   
-While there are many on-going researches about the interpretability of neural networks' behaviour including Attribution analysis like [(Guided-)GradCAM], it seems that an interface combining Feature visualization with Attribution analysis introduced in https://distill.pub/2018/building-blocks/ could be the next step. I may implement the rich interface for [VGG16-Street10] as a future enhancement.
+While there are many on-going researches about the interpretability of neural networks' behavior including Attribution analysis like (Guided) Grad-CAM, it seems that an interface combining Feature visualization with Attribution analysis introduced in https://distill.pub/2018/building-blocks/ could be the next step. I may implement the rich interface for VGG16-Street10 as a future enhancement.
   
   
   
@@ -310,13 +287,13 @@ While developing this project, I referred to many online resources. I show the m
   
 Here are batchwisely-computed classification and attribution results for examples in each city (original input images on the upper rows and results on the lower - classification results shown in the title position).
   
-- Eastern cities
-  
-<img src='./assets/eastern.png' width='' height='' title=''>
-  
 - Western cities
   
 <img src='./assets/western.png' width='' height='' title=''>
+  
+- Eastern cities
+  
+<img src='./assets/eastern.png' width='' height='' title=''>
   
   
   
@@ -330,7 +307,6 @@ Here are batchwisely-computed classification and attribution results for example
 [icrawler]: https://icrawler.readthedocs.io/en/latest/
 [VGG16-Places365]: https://github.com/CSAILVision/places365
 [Places-Dataset]: http://places2.csail.mit.edu/
-[(Guided-)GradCAM]: https://arxiv.org/abs/1610.02391
 [Colaboratory]: https://colab.research.google.com/notebooks/welcome.ipynb#recent=true
 [ImageNet]: http://www.image-net.org/
 [Keras-VGG16-places365]: https://github.com/GKalliatakis/Keras-VGG16-places365
