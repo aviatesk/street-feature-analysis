@@ -1,0 +1,3 @@
+[submodule "src/places365_vgg16_keras"]
+	path = src/places365_vgg16_keras
+	url = git@github.com:aviatesk/Keras-VGG16-places365.git
