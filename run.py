@@ -5,6 +5,7 @@ import requests
 from datetime import datetime
 from urllib.parse import urlparse
 
+
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 DIR_PATH = os.path.join('.')
@@ -19,7 +20,9 @@ ONLY_CAM_FLAG = False
 VISUALIZE_FLAG = True
 SAVE_FLAG = True
 VERBOSE = 1
-INFO_FUNC = lambda: print('[INFO]:', end=' ')
+
+
+def INFO_FUNC(): return print('[INFO]:', end=' ')
 
 
 def download_img(url, save_name, print_func=None, verbose=1):
@@ -50,7 +53,8 @@ if __name__ == '__main__':
 
     image_paths = []  # list of (localized_cls2, save_flag, image_path)
     display_cnt = 0
-    print_func = lambda: print('[Process {}]:'.format(display_cnt), end=' ')
+    def print_func(): return print(
+        '[Process {}]:'.format(display_cnt), end=' ')
 
     argv = sys.argv[1:]
     if not argv:
@@ -62,13 +66,19 @@ if __name__ == '__main__':
 
     elif argv[0] == '-h':
         print(
-            '> python run.py IMAGEPATH [IMAGEPATH -c CLSNUM] [IMAGEPATH -n SAVENAME] [IMAGEPATH --no-save] [-d SAVEDIRECTORY] [-m MODELFILEPATH] [--only-prediction] [--only-cam] [--no-visualize] [--no-save-all] [--no-verbose]'
+            '> python run.py IMAGEPATH [IMAGEPATH -c CLSNUM]'
+            ' [IMAGEPATH -n SAVENAME] [IMAGEPATH --no-save] [-d SAVEDIRECTORY]'
+            ' [-m MODELFILEPATH] [--only-prediction] [--only-cam]'
+            ' [--no-visualize] [--no-save-all] [--no-verbose]'
         )
         print(
-            '\n## This program runs Street10-CNN classsifying input image(s) and then show attributions for the result, using Guided-GradCAM method'
+            '\n## This program runs Street10-CNN classsifying input image(s)'
+            ' and then show attributions for the result, using Guided-GradCAM'
+            ' method'
         )
         print(
-            ' - IMAGEPATH can be URL to an image on the web, which will be loaded with requests module'
+            ' - IMAGEPATH can be URL to an image on the web, which will be'
+            ' loaded with requests module'
         )
         print(' - Downloaded images will be saved into {} by default'.format(
             DEFAULT_DONWLOAD_DIR))
@@ -79,21 +89,26 @@ if __name__ == '__main__':
 
         print('\n## Command options')
         print(
-            ' - [IMAGEPATH -c CLSNUM]: saliency for class CLSNUM in output2 will be localized'
+            ' - [IMAGEPATH -c CLSNUM]: saliency for class CLSNUM in output2'
+            ' will be localized'
         )
         print(
-            ' - [IMAGEPATH -n SAVENAME]: Figure will be saved as SAVENAME (.png format as default)'
+            ' - [IMAGEPATH -n SAVENAME]: Figure will be saved as SAVENAME'
+            ' (.png format as default)'
         )
         print(' - [IMAGEPATH --no-save]: Figure will not be saved')
         print(
-            ' - [-d SAVEDIRECTORY]: All the figures will be saved in to SAVEDIRECTORY'
+            ' - [-d SAVEDIRECTORY]: All the figures will be saved in to'
+            ' SAVEDIRECTORY'
         )
         print(
-            ' - [-m MODELFILEPATH]: MODELFILEPATH (should be hdf5 format) will be used as Street10-CNN'
+            ' - [-m MODELFILEPATH]: MODELFILEPATH (should be hdf5 format) will'
+            ' be used as Street10-CNN'
         )
         print(' - [--only-prediction]: Run only predictions')
         print(
-            ' - [--only-cam]: Run only CAM after making predication (the default size of image will be used for the result figures)'
+            ' - [--only-cam]: Run only CAM after making predication'
+            ' (the default size of image will be used for the result figures)'
         )
         print(' - [--no-visualize]: All the figures will not be shown')
         print(' - [--no-save-all]: All the figures will not be saved')
@@ -112,9 +127,9 @@ if __name__ == '__main__':
                 skip = True
                 print_func()
                 print(
-                    'The class {} lower from the highest class will be localized for output2'
-                    .format(image_paths[-1][0]))
-
+                    'The class {} lower from the highest class will be'
+                    ' localized for output2'.format(image_paths[-1][0])
+                )
             elif cmd == '-n':
                 image_paths[-1][1] = argv[i + 1]
                 skip = True
@@ -216,8 +231,8 @@ if __name__ == '__main__':
             image_path) in enumerate(image_paths):
         display_cnt = i + 1
         tmp_save = False if not SAVE_FLAG else \
-                   False if not tmp_save_flag else \
-                   True
+            False if not tmp_save_flag else \
+            True
 
         print()
         show_saliency(

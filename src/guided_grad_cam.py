@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 import cv2
 import numpy as np
@@ -8,6 +9,7 @@ from keras.models import load_model
 from keras.preprocessing.image import ImageDataGenerator
 import tensorflow as tf
 from tensorflow.python.framework import ops
+
 
 H, W, C = 224, 224, 3
 CITIES = ('london', 'moscow', 'nyc', 'paris', 'vancouver', 'beijing', 'kyoto',
@@ -70,7 +72,8 @@ def l2_normalize(x):
 
 def set_guided_model(model_file_path):
     '''
-    return a model, whose gradient function for all the ReLU activations according to guided backpropagation are changed
+    return a model, whose gradient function for all the ReLU activations
+    according to guided backpropagation are changed
     '''
 
     if "GuidedBackProp" not in ops._gradient_registry._registry:
@@ -139,7 +142,8 @@ def compute_grad_cam(model,
 
 def compute_grad_cam_batch(input_model, images, classes, layer_name):
     '''
-    Grad-CAM method for visualizing input saliency, same as `compute_grad_cam` but process multiple images in one run
+    Grad-CAM method for visualizing input saliency, same as `compute_grad_cam`
+    but process multiple images in one run
     '''
 
     loss = tf.gather_nd(input_model.output,
@@ -185,15 +189,19 @@ def show_saliency(
 ):
     '''
     Makes prediction for an input image and then
-    computes its saliency for the input image using Attribution-analytical approaches: Guided-GradCAM
+    computes its saliency for the input image using Attribution-analytical
+    approaches: Guided-GradCAM
 
     ## argments:
-    - layer_name: layer whose gradient will used when Grad-CAM and Guided-Backprobagation computed
+    - layer_name: layer whose gradient will used when Grad-CAM
+    Guided-Backprobagation computed
     - top_n: number of predictions with high probability to be shown
-    - localized_cls1: class number to localize for output1 (0 for most probable class, and 1 for the second most probable class, and so on)
+    - localized_cls1: class number to localize for output1 (0 for most probable
+    class, and 1 for the second most probable class, and so on)
     - localized_cls2: class number to localize for output2
     - only_prediction: specifies model will produce only prediction or not
-    - only_cam: specifies results will be explained only with Grad-CAM or even more with Guided-Backpropagation
+    - only_cam: specifies results will be explained only with Grad-CAM or even
+    more with Guided-Backpropagation
     - visualize: specifies a result figure will be showed or not
     - alpha: transperency in Grad-CAM visualizeation
     '''
@@ -272,12 +280,14 @@ def show_saliency(
             plt.axis('off')
             plt.imshow(original_image)
             plt.subplot(132)
-            plt.title('Grad-CAM for \'{}\': {:.2f} %'.format(cls1_name, cls1_prob))
+            plt.title(
+                'Grad-CAM for \'{}\': {:.2f} %'.format(cls1_name, cls1_prob))
             plt.axis('off')
             plt.imshow(original_image)
             plt.imshow(gc1, cmap='jet', alpha=alpha)
             plt.subplot(133)
-            plt.title('Grad-CAM for \'{}\': {:.2f} % '.format(cls2_name, cls2_prob))
+            plt.title(
+                'Grad-CAM for \'{}\': {:.2f} % '.format(cls2_name, cls2_prob))
             plt.axis('off')
             plt.imshow(original_image)
             plt.imshow(gc2, cmap='jet', alpha=alpha)
@@ -352,7 +362,8 @@ def show_saliency(
 
             except FileNotFoundError:
                 print(
-                    '[INFO]: Saving figure failed, check the target directory exists'
+                    '[INFO]: Saving figure failed,'
+                    ' check the target directory exists'
                 )
 
         if visualize:
